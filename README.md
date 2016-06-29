@@ -1,4 +1,4 @@
-# puccj
+# PuccJ
 
 PuccJ is a Java agent that will completely change your way to develop Java applications.
 No matters if you is a web application, a desktop application, a game.
@@ -8,10 +8,17 @@ Take a look on the video on http://www.puccj.com to see PuccJ in action.
 You can save a lot of time and money.
 PuccJ is completely free and open source.
 
+
+## Version
+0.1 - Beta Version
+
+PuccJ requires a lot complex work and testing to consider it a release version. Contribute if you like
+
+
 ## Usage
 
 PuccJ is very simple to use.
-It's a Java agent, so, start your java program with option -javaagent:{puccjroot}/puccj.jar
+It's a Java agent, so, start your java program with option `-javaagent:{puccjroot}/puccj.jar`
 
 The only thing that you need to write is a *puccj.properties* file that describes your projects, like this:
 
