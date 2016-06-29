@@ -49,9 +49,9 @@ public class PuccjAgent implements ClassFileTransformer {
     }
 
     public static void premain(String args, Instrumentation inst) {
-        Transformer.traceEnabled = true;
+        Transformer.traceEnabled = false;
         Transformer.checkEnabled = false;
-        Transformer.tracePath = "/Users/bimbobruno/Desktop/bytecode/";
+        //Transformer.tracePath = "/Users/bimbobruno/Desktop/bytecode/";
 
         PuccjAgent agent = new PuccjAgent(inst);
         agent.run(args);
