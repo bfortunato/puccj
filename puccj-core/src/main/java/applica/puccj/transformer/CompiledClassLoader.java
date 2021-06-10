@@ -55,7 +55,7 @@ public class CompiledClassLoader extends ClassLoader {
 
             ClassesRegistry.instance().registerClass(classInternalName, c, this);
 
-            logger.debug(String.format("Compiled class added to registry: %s", className));
+            logger.info(String.format("Compiled class added to registry: %s", className));
         }
     }
 
@@ -87,7 +87,7 @@ public class CompiledClassLoader extends ClassLoader {
 
             ClassDefinition definition = ClassesRegistry.instance().getClassDefinition(classInternalName);
             if (definition != null) {
-                logger.debug(String.format("Loading compiled class from registry: %s", name));
+                logger.info(String.format("Loading compiled class from registry: %s", name));
 
                 return definition.getDefinedClass();
             }

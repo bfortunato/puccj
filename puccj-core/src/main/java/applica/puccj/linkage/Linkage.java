@@ -126,7 +126,7 @@ public class Linkage {
                 RuntimeType runtimeType = new RuntimeType(ClassNameUtils.toInternalName(rt.getName()));
                 RuntimeInstance newInstance = DynamicRuntime.instance().getMemory().newRuntimeInstance(runtimeType, returnValue);
 
-                logger.debug(String.format("return value %s replaced after check with new value: %s", returnValue, newInstance.toString()));
+                logger.info(String.format("return value %s replaced after check with new value: %s", returnValue, newInstance.toString()));
 
                 returnValue = newInstance.getInstanceId();
             }
@@ -140,105 +140,105 @@ public class Linkage {
     /* bootstrap */
 
     public static CallSite bootstrapVirtual(MethodHandles.Lookup caller, String name, MethodType methodType) throws NoSuchMethodException, IllegalAccessException {
-        logger.debug(String.format("Bootstrapping virtual %s.%s%s", caller, name, methodType));
+        logger.info(String.format("Bootstrapping virtual %s.%s%s", caller, name, methodType));
 
         MethodHandles.Lookup lookup = MethodHandles.lookup();
         MethodHandle target = lookup.findStatic(Linkage.class, "invokeVirtual", MethodType.methodType(Object.class, Object[].class));
         MethodHandle adaptedTarget = target.asType(methodType);
 
-        logger.debug(String.format("Created method handle %s", adaptedTarget));
+        logger.info(String.format("Created method handle %s", adaptedTarget));
 
         return new ConstantCallSite(adaptedTarget);
     }
 
     public static CallSite bootstrapSpecial(MethodHandles.Lookup caller, String name, MethodType methodType) throws NoSuchMethodException, IllegalAccessException {
-        logger.debug(String.format("Bootstrapping special %s.%s%s", caller, name, methodType));
+        logger.info(String.format("Bootstrapping special %s.%s%s", caller, name, methodType));
 
         MethodHandles.Lookup lookup = MethodHandles.lookup();
         MethodHandle target = lookup.findStatic(Linkage.class, "invokeSpecial", MethodType.methodType(Object.class, Object[].class));
         MethodHandle adaptedTarget = target.asType(methodType);
 
-        logger.debug(String.format("Created method handle %s", adaptedTarget));
+        logger.info(String.format("Created method handle %s", adaptedTarget));
 
         return new ConstantCallSite(adaptedTarget);
     }
 
     public static CallSite bootstrapInterface(MethodHandles.Lookup caller, String name, MethodType methodType) throws NoSuchMethodException, IllegalAccessException {
-        logger.debug(String.format("Bootstrapping interface %s.%s%s", caller, name, methodType));
+        logger.info(String.format("Bootstrapping interface %s.%s%s", caller, name, methodType));
 
         MethodHandles.Lookup lookup = MethodHandles.lookup();
         MethodHandle target = lookup.findStatic(Linkage.class, "invokeInterface", MethodType.methodType(Object.class, Object[].class));
         MethodHandle adaptedTarget = target.asType(methodType);
 
-        logger.debug(String.format("Created method handle %s", adaptedTarget));
+        logger.info(String.format("Created method handle %s", adaptedTarget));
 
         return new ConstantCallSite(adaptedTarget);
     }
 
     public static CallSite bootstrapConstructor(MethodHandles.Lookup caller, String name, MethodType methodType) throws NoSuchMethodException, IllegalAccessException {
-        logger.debug(String.format("Bootstrapping constructor %s.%s%s", caller, name, methodType));
+        logger.info(String.format("Bootstrapping constructor %s.%s%s", caller, name, methodType));
 
         MethodHandles.Lookup lookup = MethodHandles.lookup();
         MethodHandle target = lookup.findStatic(Linkage.class, "invokeConstructor", MethodType.methodType(void.class, Object[].class));
         MethodHandle adaptedTarget = target.asType(methodType);
 
-        logger.debug(String.format("Created method handle %s", adaptedTarget));
+        logger.info(String.format("Created method handle %s", adaptedTarget));
 
         return new ConstantCallSite(adaptedTarget);
     }
 
     public static CallSite bootstrapStatic(MethodHandles.Lookup caller, String name, MethodType methodType) throws NoSuchMethodException, IllegalAccessException {
-        logger.debug(String.format("Bootstrapping static %s.%s%s", caller, name, methodType));
+        logger.info(String.format("Bootstrapping static %s.%s%s", caller, name, methodType));
 
         MethodHandles.Lookup lookup = MethodHandles.lookup();
         MethodHandle target = lookup.findStatic(Linkage.class, "invokeStatic", MethodType.methodType(Object.class, Object[].class));
         MethodHandle adaptedTarget = target.asType(methodType);
 
-        logger.debug(String.format("Created method handle %s", adaptedTarget));
+        logger.info(String.format("Created method handle %s", adaptedTarget));
 
         return new ConstantCallSite(adaptedTarget);
     }
 
     public static CallSite bootstrapGetField(MethodHandles.Lookup caller, String name, MethodType methodType) throws NoSuchMethodException, IllegalAccessException, NoSuchFieldException {
-        logger.debug(String.format("Bootstrapping getField %s.%s%s", caller, name, methodType));
+        logger.info(String.format("Bootstrapping getField %s.%s%s", caller, name, methodType));
 
         MethodHandles.Lookup lookup = MethodHandles.lookup();
         MethodHandle target = lookup.findStatic(Linkage.class, "invokeGetField", MethodType.methodType(Object.class, Object[].class));
 
-        logger.debug(String.format("Created method handle %s", target));
+        logger.info(String.format("Created method handle %s", target));
 
         return new ConstantCallSite(target.asType(methodType));
     }
 
     public static CallSite bootstrapPutField(MethodHandles.Lookup caller, String name, MethodType methodType) throws NoSuchMethodException, IllegalAccessException, NoSuchFieldException {
-        logger.debug(String.format("Bootstrapping putField %s.%s%s", caller, name, methodType));
+        logger.info(String.format("Bootstrapping putField %s.%s%s", caller, name, methodType));
 
         MethodHandles.Lookup lookup = MethodHandles.lookup();
         MethodHandle target = lookup.findStatic(Linkage.class, "invokePutField", MethodType.methodType(void.class, Object[].class));
 
-        logger.debug(String.format("Created method handle %s", target));
+        logger.info(String.format("Created method handle %s", target));
 
         return new ConstantCallSite(target.asType(methodType));
     }
 
     public static CallSite bootstrapGetStatic(MethodHandles.Lookup caller, String name, MethodType methodType) throws NoSuchMethodException, IllegalAccessException, NoSuchFieldException {
-        logger.debug(String.format("Bootstrapping getStatic %s.%s%s", caller, name, methodType));
+        logger.info(String.format("Bootstrapping getStatic %s.%s%s", caller, name, methodType));
 
         MethodHandles.Lookup lookup = MethodHandles.lookup();
         MethodHandle target = lookup.findStatic(Linkage.class, "invokeGetStatic", MethodType.methodType(Object.class, Object[].class));
 
-        logger.debug(String.format("Created method handle %s", target));
+        logger.info(String.format("Created method handle %s", target));
 
         return new ConstantCallSite(target.asType(methodType));
     }
 
     public static CallSite bootstrapPutStatic(MethodHandles.Lookup caller, String name, MethodType methodType) throws NoSuchMethodException, IllegalAccessException, NoSuchFieldException {
-        logger.debug(String.format("Bootstrapping putStatic %s.%s%s", caller, name, methodType));
+        logger.info(String.format("Bootstrapping putStatic %s.%s%s", caller, name, methodType));
 
         MethodHandles.Lookup lookup = MethodHandles.lookup();
         MethodHandle target = lookup.findStatic(Linkage.class, "invokePutStatic", MethodType.methodType(void.class, Object[].class));
 
-        logger.debug(String.format("Created method handle %s", target));
+        logger.info(String.format("Created method handle %s", target));
 
         return new ConstantCallSite(target.asType(methodType));
     }

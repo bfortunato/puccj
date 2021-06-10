@@ -46,13 +46,13 @@ public class ClassesRegistry {
 
             classDefinitions.add(definition);
 
-            logger.debug(String.format("Class definition created: %s", internalName));
+            logger.info(String.format("Class definition created: %s", internalName));
         } else if (!newClass.equals(definition.getDefinedClass())) {
             definition.setDefinedClass(newClass);
             definition.setClassLoader(classLoader);
             definition.incVersion();
 
-            logger.debug(String.format("New %s version: %d", internalName, definition.getVersion()));
+            logger.info(String.format("New %s version: %d", internalName, definition.getVersion()));
         }
     }
 
@@ -93,7 +93,7 @@ public class ClassesRegistry {
             definition.setInternalName(internalName);
             classDefinitions.add(definition);
 
-            logger.debug(String.format("Class definition created: %s", internalName));
+            logger.info(String.format("Class definition created: %s", internalName));
         }
 
         return definition;

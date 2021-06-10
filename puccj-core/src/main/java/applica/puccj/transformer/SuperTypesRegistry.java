@@ -49,7 +49,7 @@ public class SuperTypesRegistry {
             superType = new SuperType(internalName, superTypeClass);
             superTypes.add(superType);
 
-            logger.debug(String.format("New super type created: %s", internalName));
+            logger.info(String.format("New super type created: %s", internalName));
         }
 
         return superType;

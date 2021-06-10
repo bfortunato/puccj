@@ -65,7 +65,7 @@ public class Compiler implements SourceWatcher.SourceChangeListener {
         }
 
         for (String file : sourcePaths) {
-            logger.debug(String.format("Compiling %s", file));
+            logger.info(String.format("Compiling %s", file));
         }
 
         CompilationResult result = compiler.compile(sourcePaths, resourceReader, resourceStore, Thread.currentThread().getContextClassLoader(), settings);

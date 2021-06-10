@@ -91,7 +91,7 @@ public class PuccjAgent implements ClassFileTransformer {
     private List<Project> loadProjectsFromConfiguration(String args) throws ProjectLoadException {
         List<Project> projects = new ArrayList<>();
 
-        System.out.println(String.format("puccj working directory: %s", new File(".").getAbsolutePath()));
+        logger.info(String.format("puccj working directory: %s", new File(".").getAbsolutePath()));
 
         InputStream configurationIn = null;
         if (StringUtils.isNotEmpty(args)) {
@@ -182,12 +182,14 @@ public class PuccjAgent implements ClassFileTransformer {
 
             projects.add(project);
 
-            logger.trace(String.format("Project %s configured {", projectName));
-            logger.trace(String.format("\tpackages: %s", StringUtils.join(project.getPackages())));
-            logger.trace(String.format("\tsources: %s", project.getSourcesDir()));
-            logger.trace(String.format("\ttarget: %s", project.getTargetDir()));
-            logger.trace("}");
+            logger.info(String.format("Project %s configured {", projectName));
+            logger.info(String.format("\tpackages: %s", StringUtils.join(project.getPackages())));
+            logger.info(String.format("\tsources: %s", project.getSourcesDir()));
+            logger.info(String.format("\ttarget: %s", project.getTargetDir()));
+            logger.info("}");
         }
+
+        logger.info("OK");
 
         return projects;
     }
@@ -252,7 +254,7 @@ public class PuccjAgent implements ClassFileTransformer {
                 RefreshConstructorClassVisitor cv = new RefreshConstructorClassVisitor(className, DynamicRuntime.instance().getAllowedPackages(), cw, classInfo);
                 cr.accept(cv, 0);
 
-                logger.trace(String.format("Created refresh constructor for class: %s", classInternalName));
+                logger.info(String.format("Created refresh constructor for class: %s", classInternalName));
 
                 byte[] bytes = cw.toByteArray();
 

@@ -155,7 +155,7 @@ public class Transformer {
             traceClass(classInternalName, bytes);
         }
 
-        logger.trace(String.format("Class transformed: %s", classInternalName));
+        logger.info(String.format("Class transformed: %s", classInternalName));
 
         List<String> duplicatedMethods = TypeUtils.findDuplicatedMethods(bytes);
         if (duplicatedMethods.size() > 0) {

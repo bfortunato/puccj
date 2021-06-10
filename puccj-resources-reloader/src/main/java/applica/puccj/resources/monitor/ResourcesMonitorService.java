@@ -52,7 +52,7 @@ public class ResourcesMonitorService implements FilesystemAlterationListener {
         thread.setName("Single run source watcher");
         thread.start();
 
-        logger.debug(String.format("Scanning source at %s", sourceDir));
+        logger.info(String.format("Scanning source at %s", sourceDir));
     }
 
     public void join() {
@@ -70,7 +70,7 @@ public class ResourcesMonitorService implements FilesystemAlterationListener {
         monitor.stop();
         monitor = null;
 
-        logger.debug(String.format("Stopped resources scanning at %s", sourceDir));
+        logger.info(String.format("Stopped resources scanning at %s", sourceDir));
     }
 
 

@@ -69,7 +69,7 @@ public class SourceWatcher implements FilesystemAlterationListener {
         monitor = new FilesystemAlterationMonitor();
         monitor.addListener(new File(project.getSourcesDir()), this);
 
-        logger.debug(String.format("Scanning source at %s", project.getSourcesDir()));
+        logger.info(String.format("Scanning source at %s", project.getSourcesDir()));
 
         Thread thread = new Thread(monitor);
         thread.setName("Single run source watcher");
@@ -96,7 +96,7 @@ public class SourceWatcher implements FilesystemAlterationListener {
         monitor.addListener(new File(project.getSourcesDir()), this);
         monitor.start();
 
-        logger.debug(String.format("Scanning source at %s", project.getSourcesDir()));
+        logger.info(String.format("Scanning source at %s", project.getSourcesDir()));
     }
 
     public void stop() {
@@ -105,7 +105,7 @@ public class SourceWatcher implements FilesystemAlterationListener {
         monitor = null;
 
 
-        logger.debug(String.format("Stopped source scanning at %s", project.getSourcesDir()));
+        logger.info(String.format("Stopped source scanning at %s", project.getSourcesDir()));
     }
 
     public void clear() {
@@ -125,7 +125,7 @@ public class SourceWatcher implements FilesystemAlterationListener {
     public void onFileCreate(File pFile) {
         if (FilenameUtils.getExtension(pFile.getName()).equals(JAVAEXT)) {
             if (isPathAvailable(PathUtils.relative(project.getSourcesDir(), pFile.getAbsolutePath()))) {
-                logger.debug(String.format("New source file created: %s", pFile.getPath()));
+                logger.info(String.format("New source file created: %s", pFile.getPath()));
                 createdSourceFiles.add(new SourceFile(pFile));
             }
         }
@@ -135,7 +135,7 @@ public class SourceWatcher implements FilesystemAlterationListener {
     public void onFileChange(File pFile) {
         if (FilenameUtils.getExtension(pFile.getName()).equals(JAVAEXT)) {
             if (isPathAvailable(PathUtils.relative(project.getSourcesDir(), pFile.getAbsolutePath()))) {
-                logger.debug(String.format("Source file changed: %s", pFile.getPath()));
+                logger.info(String.format("Source file changed: %s", pFile.getPath()));
                 changedSourceFiles.add(new SourceFile(pFile));
             }
         }

@@ -75,7 +75,7 @@ public abstract class Pointer {
             methodHandle = createMethodHandle(latestInstance);
         }
 
-        logger.debug(String.format("Invoking %s.%s %s", owner, name, desc));
+        logger.info(String.format("Invoking %s.%s %s", owner, name, desc));
 
         try {
             if (hasReturnType()) {
@@ -102,7 +102,7 @@ public abstract class Pointer {
             methodHandle = createMethodHandle(null);
         }
 
-        logger.debug(String.format("Invoking static %s.%s %s", owner, name, desc));
+        logger.info(String.format("Invoking static %s.%s %s", owner, name, desc));
 
         if (hasReturnType()) {
             return methodHandle.invokeWithArguments(args);
@@ -119,7 +119,7 @@ public abstract class Pointer {
     protected abstract MethodHandle createMethodHandle(__PuccjObject instance);
 
     public void invalidate() {
-        logger.debug(String.format("%s.%s %s invalidated", owner, name, desc));
+        logger.info(String.format("%s.%s %s invalidated", owner, name, desc));
         methodHandle = null;
         targetLookup = null;
     }

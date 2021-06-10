@@ -11,6 +11,11 @@ import applica.puccj.tests.consoleapp.inheritance.InheritanceTest;
 import applica.puccj.tests.consoleapp.methodsign.MethodSignTest;
 import applica.puccj.tests.consoleapp.spring.SpringTest;
 import applica.puccj.tests.consoleapp.springxml.SpringXmlTest;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class App {
 
@@ -24,7 +29,15 @@ public class App {
     private static EqualityTest equalityTest = new EqualityTest();
     private static AnnotationsTest annotationsTest = new AnnotationsTest();
 
+    private static Log logger = LogFactory.getLog(App.class);
+
     public static void main( String[] args ) {
+
+        logger.info("CIAO");
+        Logger.getGlobal().setLevel(Level.ALL);
+        logger.info("CIAO2");
+
+
         test();
         TestUtils.modifyAndWait(DynamicRuntime.instance().getSources(), true);
         test();
@@ -33,13 +46,13 @@ public class App {
     }
 
     private static void test() {
-        springXmlTest.doIt();
+        //springXmlTest.doIt();
         cglibTest.doIt();
         constructorTest.doIt();
         getPutFieldTest.doIt();
         inheritanceTest.doIt();
         methodSignTest.doIt();
-        springTest.doIt();
+        //springTest.doIt();
         equalityTest.doIt();
         annotationsTest.doIt();
     }

@@ -52,7 +52,7 @@ public class GetFieldPointer extends Pointer {
                     memory.put(field, val);
                 }
 
-                logger.debug(String.format("Reflected field %s.%s value: %s", instance.getClass().getName(), getName(), val));
+                logger.info(String.format("Reflected field %s.%s value: %s", instance.getClass().getName(), getName(), val));
             } catch (Exception e) {
                 logger.warn(String.format("Error trying to access field %s.%s", instance.getClass().getName(), getName()));
                 if (CLASS_DUMP_ON_ERROR) {

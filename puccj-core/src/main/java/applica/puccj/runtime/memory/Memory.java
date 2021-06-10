@@ -40,7 +40,7 @@ public class Memory {
     public Object get(RuntimeField field) {
         Value value = getOrCreateValue(field);
 
-        logger.debug(String.format("Getting value %s: %s", field.toString(), value));
+        logger.info(String.format("Getting value %s: %s", field.toString(), value));
 
         return value.getVal();
     }
@@ -48,7 +48,7 @@ public class Memory {
     public void put(RuntimeField field, Object val) {
         Value value = getOrCreateValue(field);
 
-        logger.debug(String.format("Setting value %s: %s", field.toString(), val));
+        logger.info(String.format("Setting value %s: %s", field.toString(), val));
 
         value.setVal(val);
     }
